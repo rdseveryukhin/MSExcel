@@ -2,7 +2,7 @@ VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
-Attribute VB_Name = "Лист1"
+Attribute VB_Name = "Г‹ГЁГ±ГІ1"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -21,9 +21,9 @@ numberSheets = ActiveWorkbook.Worksheets.Count ' - get actual amount of sheets
 lastrow = Worksheets(1).Cells(rows.Count, "A").End(xlUp).Row
 lastrow = lastrow - 10
 For Row = 1 To lastrow
-    If Worksheets(1).Cells(Row, 1) = "Всего за раздел" Then
+    If Worksheets(1).Cells(Row, 1) = "Г‚Г±ГҐГЈГ® Г§Г  Г°Г Г§Г¤ГҐГ«" Then
         Worksheets(1).Cells(Row, 7) = ""
-    ElseIf Worksheets(1).Cells(Row, 1) <> "Полы" And Worksheets(1).Cells(Row, 1) <> "Стены" And Worksheets(1).Cells(Row, 1) <> "Чистовая электрика" And Worksheets(1).Cells(Row, 1) <> "Двери" And Worksheets(1).Cells(Row, 1) <> "Оборудование" And Worksheets(1).Cells(Row, 1) <> "Мебель" And Worksheets(1).Cells(Row, 1) <> "Декор" And Worksheets(1).Cells(Row, 1) <> "Другое" And Worksheets(1).Cells(Row, 1) <> "Тип" Then
+    ElseIf Worksheets(1).Cells(Row, 1) <> "ГЏГ®Г«Г»" And Worksheets(1).Cells(Row, 1) <> "Г‘ГІГҐГ­Г»" And Worksheets(1).Cells(Row, 1) <> "Г—ГЁГ±ГІГ®ГўГ Гї ГЅГ«ГҐГЄГІГ°ГЁГЄГ " And Worksheets(1).Cells(Row, 1) <> "Г„ГўГҐГ°ГЁ" And Worksheets(1).Cells(Row, 1) <> "ГЋГЎГ®Г°ГіГ¤Г®ГўГ Г­ГЁГҐ" And Worksheets(1).Cells(Row, 1) <> "ГЊГҐГЎГҐГ«Гј" And Worksheets(1).Cells(Row, 1) <> "Г„ГҐГЄГ®Г°" And Worksheets(1).Cells(Row, 1) <> "Г„Г°ГіГЈГ®ГҐ" And Worksheets(1).Cells(Row, 1) <> "Г’ГЁГЇ" Then
         For col = 2 To 7
             Worksheets(1).Cells(Row, col) = ""
         Next col
@@ -36,20 +36,20 @@ For i = 2 To numberSheets ' - iteration between worksheets
     lastrow = Worksheets(i).Cells(rows.Count, "A").End(xlUp).Row ' - get number of last row
 
     For j = 1 To lastrow ' - iteration between rows additional pages
-        If Worksheets(i).Cells(j, 1) = "Полы" Or Worksheets(i).Cells(j, 1) = "Стены" Or Worksheets(i).Cells(j, 1) = "Чистовая электрика" Or Worksheets(i).Cells(j, 1) = "Двери" Or Worksheets(i).Cells(j, 1) = "Оборудование" Or Worksheets(i).Cells(j, 1) = "Мебель" Or Worksheets(i).Cells(j, 1) = "Декор" Or Worksheets(i).Cells(j, 1) = "Другое" Then
+        If Worksheets(i).Cells(j, 1) = "ГЏГ®Г«Г»" Or Worksheets(i).Cells(j, 1) = "Г‘ГІГҐГ­Г»" Or Worksheets(i).Cells(j, 1) = "Г—ГЁГ±ГІГ®ГўГ Гї ГЅГ«ГҐГЄГІГ°ГЁГЄГ " Or Worksheets(i).Cells(j, 1) = "Г„ГўГҐГ°ГЁ" Or Worksheets(i).Cells(j, 1) = "ГЋГЎГ®Г°ГіГ¤Г®ГўГ Г­ГЁГҐ" Or Worksheets(i).Cells(j, 1) = "ГЊГҐГЎГҐГ«Гј" Or Worksheets(i).Cells(j, 1) = "Г„ГҐГЄГ®Г°" Or Worksheets(i).Cells(j, 1) = "Г„Г°ГіГЈГ®ГҐ" Then
             topic = Worksheets(i).Cells(j, 1)
             
-        ElseIf Worksheets(i).Cells(j, 1) = "Всего за раздел" Then
+        ElseIf Worksheets(i).Cells(j, 1) = "Г‚Г±ГҐГЈГ® Г§Г  Г°Г Г§Г¤ГҐГ«" Then
             k = 1
             While Worksheets(1).Cells(k, 1) <> topic
                 k = k + 1
             Wend
-            While Worksheets(1).Cells(k, 1) <> "Всего за раздел"
+            While Worksheets(1).Cells(k, 1) <> "Г‚Г±ГҐГЈГ® Г§Г  Г°Г Г§Г¤ГҐГ«"
                 k = k + 1
             Wend
             Worksheets(1).Cells(k, 7) = Worksheets(1).Cells(k, 7) + Worksheets(i).Cells(j, 7)
             
-        ElseIf Worksheets(i).Cells(j, 1) <> "Тип" And Worksheets(i).Cells(j, 1) <> "" Then
+        ElseIf Worksheets(i).Cells(j, 1) <> "Г’ГЁГЇ" And Worksheets(i).Cells(j, 1) <> "" Then
             k = 1
             flag = False
             While flag = False ' - iteration between rows main pages
@@ -57,23 +57,23 @@ For i = 2 To numberSheets ' - iteration between worksheets
                     flag = True
                     For col = 2 To 7 ' - iteration between columns
 
-                        If Worksheets(1).Cells(2, col) = "Количество" Or Worksheets(1).Cells(2, col) = "Стоимость" Then
+                        If Worksheets(1).Cells(2, col) = "ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ®" Or Worksheets(1).Cells(2, col) = "Г‘ГІГ®ГЁГ¬Г®Г±ГІГј" Then
                             Worksheets(1).Cells(k, col) = Worksheets(1).Cells(k, col) + Worksheets(i).Cells(j, col)
 
-                        ElseIf Worksheets(1).Cells(2, col) = "Поставщик" Or Worksheets(1).Cells(2, col) = "Наименование" Or Worksheets(1).Cells(2, col) = "Артикул" Or Worksheets(1).Cells(2, col) = "Цена за ед." Then
+                        ElseIf Worksheets(1).Cells(2, col) = "ГЏГ®Г±ГІГ ГўГ№ГЁГЄ" Or Worksheets(1).Cells(2, col) = "ГЌГ ГЁГ¬ГҐГ­Г®ГўГ Г­ГЁГҐ" Or Worksheets(1).Cells(2, col) = "ГЂГ°ГІГЁГЄГіГ«" Or Worksheets(1).Cells(2, col) = "Г–ГҐГ­Г  Г§Г  ГҐГ¤." Then
                             If Worksheets(i).Cells(j, col) <> "" Then
                                 Worksheets(1).Cells(k, col) = Worksheets(i).Cells(j, col)
                             End If
                         End If
                     Next col
 
-                ElseIf Worksheets(1).Cells(k, 1) = "ИТОГО" Or k > 200 Then
+                ElseIf Worksheets(1).Cells(k, 1) = "Г€Г’ГЋГѓГЋ" Or k > 200 Then
                     flag = True
                     k = 1
                     While Worksheets(1).Cells(k, 1) <> topic
                         k = k + 1
                     Wend
-                    While Worksheets(1).Cells(k, 1) <> "Всего за раздел"
+                    While Worksheets(1).Cells(k, 1) <> "Г‚Г±ГҐГЈГ® Г§Г  Г°Г Г§Г¤ГҐГ«"
                         k = k + 1
                     Wend
                     k = k - 1
@@ -85,7 +85,7 @@ For i = 2 To numberSheets ' - iteration between worksheets
                     Worksheets(1).Cells(k, 1).EntireRow.Font.Bold = False
                     
                     For col = 1 To 7 ' - iteration between columns
-                        If Worksheets(1).Cells(2, col) = "Количество" Or Worksheets(1).Cells(2, col) = "Стоимость" Then
+                        If Worksheets(1).Cells(2, col) = "ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ®" Or Worksheets(1).Cells(2, col) = "Г‘ГІГ®ГЁГ¬Г®Г±ГІГј" Then
                             Worksheets(1).Cells(k, col) = Worksheets(1).Cells(k, col) + Worksheets(i).Cells(j, col)
 
                         Else
