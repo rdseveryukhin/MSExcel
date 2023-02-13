@@ -14,45 +14,45 @@ For Row = 3 To lastrow
     Workbooks("materials_loading.xlsm").Worksheets(1).Cells(Row, 2).Borders.LineStyle = False
 Next Row
 
-'' Путь к папке с файлами
+'' Path to directory
 myPath = Range("B1")
 
 Set fso = CreateObject("Scripting.FileSystemObject")
 Set myFolder = fso.GetFolder(myPath)
 
-'' Если нет Менеджеров в папке
+'' If directory is empty
 If myFolder.Files.Count = 0 Then
-    MsgBox "Нет файлов"
+    MsgBox "No files"
     Exit Sub
 Else
     Dim count_files As Integer
     count_files = myFolder.Files.Count
     
-    '' Массив с именами менеджеров
+    '' Array with file names
     ReDim myFiles(1 To count_files)
 
-    '' Заполняем массив знпчениями путей к файлам
+        '' Filling array with paths to files
     For Each myFile In myFolder.Files
         i = i + 1
         myFiles(i) = myFile.Path
     Next
     
-    '' Программа обработки
+    '' Processing
     For i = 1 To count_files
         Workbooks.Open (myFiles(i))
         Name = Right(myFiles(i), Len(myFiles(i)) - InStrRev(myFiles(i), "\", , 1))
         
-        ''Поиск одного из названий раздела
+    ''Searching title
         j = 1
-        While Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Раздел 2. Материалы и оборудование в текущих ценах" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Раздел№1. Материалы и оборудование" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Раздел №1. Материалы и оборудование"
+        While Workbooks(Name).Worksheets(1).Cells(j, 1) <> "ГђГ Г§Г¤ГҐГ« 2. ГЊГ ГІГҐГ°ГЁГ Г«Г» ГЁ Г®ГЎГ®Г°ГіГ¤Г®ГўГ Г­ГЁГҐ Гў ГІГҐГЄГіГ№ГЁГµ Г¶ГҐГ­Г Гµ" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "ГђГ Г§Г¤ГҐГ«В№1. ГЊГ ГІГҐГ°ГЁГ Г«Г» ГЁ Г®ГЎГ®Г°ГіГ¤Г®ГўГ Г­ГЁГҐ" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "ГђГ Г§Г¤ГҐГ« В№1. ГЊГ ГІГҐГ°ГЁГ Г«Г» ГЁ Г®ГЎГ®Г°ГіГ¤Г®ГўГ Г­ГЁГҐ"
             j = j + 1
         Wend
         
-        ''Андерсен
-        If Workbooks(Name).Worksheets(1).Cells(j, 1) = "Раздел 2. Материалы и оборудование в текущих ценах" Then
+        ''Andersen
+        If Workbooks(Name).Worksheets(1).Cells(j, 1) = "ГђГ Г§Г¤ГҐГ« 2. ГЊГ ГІГҐГ°ГЁГ Г«Г» ГЁ Г®ГЎГ®Г°ГіГ¤Г®ГўГ Г­ГЁГҐ Гў ГІГҐГЄГіГ№ГЁГµ Г¶ГҐГ­Г Гµ" Then
             j = j + 1
-            While Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Итоги по акту:" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Итого по разделу 2 Материалы и оборудование в текущих ценах" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "ИТОГИ ПО АКТУ:"
-                If Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Нижний ярус" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Секция 5.6" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Секция 5.5" Then
+            While Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Г€ГІГ®ГЈГЁ ГЇГ® Г ГЄГІГі:" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Г€ГІГ®ГЈГ® ГЇГ® Г°Г Г§Г¤ГҐГ«Гі 2 ГЊГ ГІГҐГ°ГЁГ Г«Г» ГЁ Г®ГЎГ®Г°ГіГ¤Г®ГўГ Г­ГЁГҐ Гў ГІГҐГЄГіГ№ГЁГµ Г¶ГҐГ­Г Гµ" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Г€Г’ГЋГѓГ€ ГЏГЋ ГЂГЉГ’Г“:"
+                If Workbooks(Name).Worksheets(1).Cells(j, 1) <> "ГЌГЁГ¦Г­ГЁГ© ГїГ°ГіГ±" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Г‘ГҐГЄГ¶ГЁГї 5.6" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Г‘ГҐГЄГ¶ГЁГї 5.5" Then
                     lastrow = Workbooks("materials_loading.xlsm").Worksheets(1).Cells(Rows.Count, "A").End(xlUp).Row
                     k = 3
                     flag = False
@@ -87,10 +87,10 @@ Else
                 j = j + 1
             Wend
                
-        ''Скандия
-        ElseIf Workbooks(Name).Worksheets(1).Cells(j, 1) = "Раздел№1. Материалы и оборудование" Or Workbooks(Name).Worksheets(1).Cells(j, 1) = "Раздел №1. Материалы и оборудование" Then
+            ''Scandy
+        ElseIf Workbooks(Name).Worksheets(1).Cells(j, 1) = "ГђГ Г§Г¤ГҐГ«В№1. ГЊГ ГІГҐГ°ГЁГ Г«Г» ГЁ Г®ГЎГ®Г°ГіГ¤Г®ГўГ Г­ГЁГҐ" Or Workbooks(Name).Worksheets(1).Cells(j, 1) = "ГђГ Г§Г¤ГҐГ« В№1. ГЊГ ГІГҐГ°ГЁГ Г«Г» ГЁ Г®ГЎГ®Г°ГіГ¤Г®ГўГ Г­ГЁГҐ" Then
             j = j + 1
-            While Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Итого" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> ""
+            While Workbooks(Name).Worksheets(1).Cells(j, 1) <> "Г€ГІГ®ГЈГ®" And Workbooks(Name).Worksheets(1).Cells(j, 1) <> ""
                 lastrow = Workbooks("materials_loading.xlsm").Worksheets(1).Cells(Rows.Count, "A").End(xlUp).Row
                 k = 3
                 flag = False
@@ -118,7 +118,7 @@ Else
         End If
        
         Workbooks("materials_loading.xlsm").Worksheets(1).Cells(1, 10) = Workbooks("materials_loading.xlsm").Worksheets(1).Cells(1, 10) + 1
-        ''Закрытие файла
+        ''Closing file
         Workbooks(Name).Close
     Next i
 End If
