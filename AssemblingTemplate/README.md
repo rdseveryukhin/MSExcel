@@ -1,0 +1,1 @@
+Here's a script for MS Excel document, which have main common page and some additional pages for each object. User can enter quantity of materials and their marks etc for every object. Next script will summarize them and upload all information from additional pages to main page. It'll also insert new rows if it's nessesary under right topic.
